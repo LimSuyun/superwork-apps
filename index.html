@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>superwork apps · 출시 앱 모아보기</title>
+  <meta name="description" content="Superwork Workflow로 만든 앱들. 출시 13종 + 출시 예정 2종. QR을 스캔하거나 카드를 눌러 바로 플레이하세요." />
+  <meta name="theme-color" content="#fafaf7" />
+
+  <!-- Open Graph / Twitter — 배포 도메인이 정해지면 og:url / og:image를 절대경로로 바꿔주세요 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="superwork apps · 출시 앱 모아보기" />
+  <meta property="og:description" content="Superwork Workflow로 만든 앱들. 출시 13종 + 출시 예정 2종." />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css" />
+
+  <style>
+    :root{
+      --bg:#fafaf7;
+      --bg-soft:#f3f2ec;
+      --card:#ffffff;
+      --ink:#17161f;
+      --ink-2:#3a3947;
+      --muted:#6c6b79;
+      --line:#e7e5dd;
+      --violet:#6d5cf0;
+      --cyan:#0bb5d6;
+      --grad:linear-gradient(95deg,#6d5cf0 0%,#7c6bf5 42%,#0bb5d6 100%);
+      --shadow:0 1px 2px rgba(20,18,40,.04),0 12px 30px rgba(20,18,40,.06);
+      --shadow-lg:0 4px 10px rgba(20,18,40,.06),0 24px 60px rgba(20,18,40,.10);
+      --r:22px;
+      --maxw:1120px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,system-ui,sans-serif;
+      background:var(--bg);color:var(--ink);
+      -webkit-font-smoothing:antialiased;line-height:1.6;
+      word-break:keep-all;overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:800;
+      letter-spacing:2.5px;text-transform:uppercase;color:var(--violet);
+    }
+    .eyebrow::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--grad)}
+    .eyebrow.center{justify-content:center}
+
+    /* ---------- 헤더 ---------- */
+    .pagehead{position:sticky;top:0;z-index:80;background:rgba(250,250,247,.85);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+    .pagehead.scrolled{border-bottom-color:var(--line)}
+    .headrow{display:flex;align-items:center;justify-content:space-between;height:58px}
+    .brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:18px;letter-spacing:-.5px}
+    .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--grad)}
+    .hnav{display:flex;gap:24px}
+    .hnav a{font-size:14px;font-weight:700;color:var(--ink-2);transition:color .15s}
+    .hnav a:hover{color:var(--violet)}
+    @media(max-width:560px){.hnav{gap:15px}.hnav a{font-size:13px}}
+
+    /* ---------- 인트로 밴드 ---------- */
+    .intro-band{text-align:center;padding:50px 0 6px}
+    .intro-band h1{font-size:clamp(28px,5vw,42px);font-weight:900;letter-spacing:-1.5px}
+    .intro-band p{margin-top:14px;font-size:clamp(15px,2vw,17px);color:var(--muted);line-height:1.65}
+    .intro-band p b{color:var(--ink);font-weight:800}
+
+    /* ---------- 패널 공통 ---------- */
+    .panel{position:relative;padding:46px 0;scroll-margin-top:64px}
+    .panel.soft{background:var(--bg-soft)}
+
+    /* ---------- APPS ---------- */
+    .sec-head{text-align:center;margin:0 auto 30px;max-width:640px}
+    .sec-head .eyebrow{margin-bottom:10px}
+    .sec-head h2{font-size:clamp(24px,4vw,36px);font-weight:900;letter-spacing:-1.2px}
+    .sec-head h2 .cnt{font-size:.55em;font-weight:800;color:var(--violet);vertical-align:super;margin-left:6px}
+    .sec-head p{margin-top:10px;font-size:15px;color:var(--muted)}
+    .apps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;perspective:1400px}
+    @media(max-width:1000px){.apps{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:720px){.apps{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:440px){.apps{grid-template-columns:1fr}}
+    .app{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+      padding:0;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .2s;
+      display:flex;flex-direction:column;
+      position:relative;overflow:hidden;transform-style:preserve-3d;will-change:transform;
+    }
+    .app:hover{box-shadow:var(--shadow-lg)}
+    .app::before{
+      content:"";position:absolute;inset:0;border-radius:inherit;z-index:2;pointer-events:none;
+      opacity:0;transition:opacity .3s ease;
+      background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(109,92,240,.16),rgba(11,181,214,.05) 40%,transparent 66%);
+    }
+    .app:hover::before{opacity:1}
+    .app>*{position:relative;z-index:1}
+    /* 썸네일 배너 */
+    .shot{position:relative;aspect-ratio:2.35/1;overflow:hidden;background:var(--bg-soft)}
+    .shot img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s ease}
+    .app:hover .shot img{transform:scale(1.06)}
+    .app-body{padding:15px 16px 16px;display:flex;flex-direction:column;flex:1}
+    .app-top{display:flex;gap:11px;align-items:center}
+    .app-icon{width:42px;height:42px;border-radius:12px;object-fit:cover;flex-shrink:0;box-shadow:0 2px 8px rgba(20,18,40,.12);background:var(--bg-soft)}
+    .app .genre{font-size:11px;font-weight:800;color:var(--violet);letter-spacing:.2px}
+    .app .name{font-size:16.5px;font-weight:900;letter-spacing:-.5px;margin-top:1px}
+    .app .desc{font-size:12.8px;line-height:1.5;color:var(--muted);margin-top:11px;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    /* 핵심 기능 칩 */
+    .feats{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+    .feats span{font-size:11px;font-weight:700;color:var(--ink-2);background:var(--bg-soft);border:1px solid var(--line);padding:4px 8px;border-radius:8px;white-space:nowrap}
+    .app-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:13px;border-top:1px solid var(--line)}
+    .store{font-size:12px;font-weight:800;color:var(--ink-2);display:inline-flex;align-items:center;gap:6px}
+    .store .s-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+    .store.one .s-dot{background:#ef5b2b}
+    .app .qr{width:50px;height:50px;border-radius:8px;border:1px solid var(--line);padding:3px;background:#fff}
+
+    /* ---------- 출시 예정 ---------- */
+    .app.soon{cursor:default}
+    .app.soon .app-icon{filter:saturate(.7)}
+    .app.soon::after{
+      content:"COMING SOON";position:absolute;top:14px;right:14px;z-index:2;
+      font-size:10px;font-weight:900;letter-spacing:.8px;color:#fff;
+      background:var(--ink);padding:5px 9px;border-radius:999px;
+    }
+    .soon-foot{
+      display:inline-flex;align-items:center;gap:6px;margin-top:18px;padding-top:16px;
+      border-top:1px solid var(--line);font-size:12px;font-weight:800;color:var(--muted);margin-top:auto;
+    }
+    .soon-foot .s-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+
+    /* ---------- 탭 ---------- */
+    .apps-section{padding:22px 0 52px}
+    .tabs{position:relative;display:flex;gap:4px;justify-content:center;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:6px;width:max-content;max-width:100%;margin:0 auto 30px}
+    .tab{position:relative;z-index:1;border:0;background:transparent;cursor:pointer;font-family:inherit;
+      font-size:14.5px;font-weight:800;color:var(--ink-2);padding:10px 20px;border-radius:999px;letter-spacing:-.2px;
+      display:inline-flex;align-items:center;gap:7px;transition:color .25s;white-space:nowrap}
+    .tab i{font-style:normal;font-size:11px;font-weight:800;color:var(--violet);background:rgba(109,92,240,.12);padding:2px 7px;border-radius:999px;transition:color .25s,background .25s}
+    .tab.active{color:#fff}
+    .tab.active i{color:#fff;background:rgba(255,255,255,.25)}
+    .tab-ink{position:absolute;top:6px;left:0;height:calc(100% - 12px);width:0;border-radius:999px;background:var(--grad);
+      box-shadow:0 6px 16px rgba(109,92,240,.3);transition:transform .32s cubic-bezier(.4,.1,.2,1),width .32s cubic-bezier(.4,.1,.2,1);z-index:0}
+    @media(max-width:480px){.tab{padding:9px 12px;font-size:12.5px;gap:5px}.tabs{gap:2px}}
+    .tabwrap{position:relative}
+    .tabpanel{display:none}
+    .tabpanel.active{display:block;animation:panelIn .35s ease}
+    .tabpanel.from-right{animation:slideR .34s cubic-bezier(.2,.7,.2,1)}
+    .tabpanel.from-left{animation:slideL .34s cubic-bezier(.2,.7,.2,1)}
+    @keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    @keyframes slideR{from{opacity:0;transform:translateX(44px)}to{opacity:1;transform:none}}
+    @keyframes slideL{from{opacity:0;transform:translateX(-44px)}to{opacity:1;transform:none}}
+    .swipe-hint{text-align:center;margin-top:26px;font-size:12.5px;font-weight:600;color:#a3a2af}
+    @media(hover:hover) and (pointer:fine){.swipe-hint{display:none}}
+
+    /* ---------- 상세 모달 ---------- */
+    .modal{position:fixed;inset:0;z-index:100;display:none}
+    .modal.open{display:block}
+    .modal-bg{position:absolute;inset:0;background:rgba(15,14,30,.5);backdrop-filter:blur(3px);animation:fade .25s ease}
+    .modal-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      width:min(460px,92vw);max-height:88vh;overflow:auto;background:var(--card);border-radius:24px;
+      box-shadow:0 30px 80px rgba(15,14,30,.4);animation:pop .3s cubic-bezier(.2,.8,.2,1)}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+    @keyframes pop{from{opacity:0;transform:translate(-50%,-46%) scale(.96)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+    .modal-x{position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;border:0;border-radius:50%;
+      background:rgba(0,0,0,.42);color:#fff;font-size:21px;line-height:1;cursor:pointer;backdrop-filter:blur(4px)}
+    .modal-shot{aspect-ratio:2.1/1;background:var(--bg-soft);overflow:hidden}
+    .modal-shot img{width:100%;height:100%;object-fit:cover}
+    .modal-body{padding:22px}
+    .modal-head{display:flex;gap:14px;align-items:center}
+    .modal-icon{width:56px;height:56px;border-radius:16px;flex-shrink:0;box-shadow:0 2px 10px rgba(20,18,40,.16)}
+    .modal-genre{font-size:12px;font-weight:800;color:var(--violet)}
+    .modal-name{font-size:22px;font-weight:900;letter-spacing:-.6px;margin-top:2px}
+    .modal-desc{margin-top:16px;font-size:14.5px;line-height:1.66;color:var(--ink-2)}
+    .modal-feats{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:11px}
+    .modal-feats li{font-size:13.3px;line-height:1.5;color:var(--muted)}
+    .modal-feats li b{display:block;color:var(--ink);font-weight:800;font-size:14px;margin-bottom:1px}
+    .modal-foot{display:flex;align-items:center;gap:14px;margin-top:22px}
+    .modal-cta{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      height:50px;border-radius:14px;font-size:15px;font-weight:800;color:#fff;background:var(--grad);
+      box-shadow:0 8px 22px rgba(109,92,240,.3);transition:transform .15s}
+    .modal-cta:hover{transform:translateY(-2px)}
+    .modal-cta.soon{background:var(--bg-soft);color:var(--muted);box-shadow:none;cursor:default;border:1px solid var(--line)}
+    .modal-qr{width:64px;height:64px;border-radius:10px;border:1px solid var(--line);padding:4px;background:#fff;flex-shrink:0}
+    .modal-qr.hide{display:none}
+    body.noscroll{overflow:hidden}
+
+    /* ---------- 의견 창구 ---------- */
+    .feedback{text-align:center;padding:52px 0;border-top:1px solid var(--line)}
+    .feedback h2{font-size:clamp(22px,3.4vw,30px);font-weight:900;letter-spacing:-1px}
+    .feedback p{margin-top:12px;font-size:15px;color:var(--muted)}
+    .fb-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;height:50px;padding:0 26px;border-radius:14px;
+      font-size:15px;font-weight:800;color:#fff;background:var(--grad);box-shadow:0 8px 22px rgba(109,92,240,.3);transition:transform .15s}
+    .fb-btn:hover{transform:translateY(-2px)}
+    .fb-sub{margin-top:14px;font-size:12.5px;color:#a3a2af}
+
+    /* ---------- Footer ---------- */
+    .foot{border-top:1px solid var(--line);padding:34px 0;text-align:center;background:var(--bg-soft)}
+    .foot .brand{justify-content:center;margin-bottom:8px}
+    .foot .team{font-size:13px;color:var(--muted);font-weight:700}
+    .foot .copy{font-size:12px;color:#a3a2af;margin-top:6px}
+
+    /* ---------- Reveal ---------- */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 헤더 ===== -->
+  <header class="pagehead" id="pagehead">
+    <div class="wrap headrow">
+      <a class="brand" href="#top"><span class="dot"></span>superwork apps</a>
+      <nav class="hnav">
+        <a data-tab="games">게임</a>
+        <a data-tab="life">라이프·AI</a>
+        <a data-tab="soon">출시 예정</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 인트로 ===== -->
+  <section id="top" class="intro-band">
+    <div class="wrap">
+      <h1>superwork 앱 모아보기</h1>
+      <p>Superwork Workflow로 만든 <b>출시 앱 13종</b>과 <b>출시 예정 2종</b>.<br>카드를 누르거나 QR을 스캔하면 바로 실행됩니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 앱 탭 ===== -->
+  <section class="apps-section">
+    <div class="wrap">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="games" role="tab">🎮 게임<i>7</i></button>
+        <button class="tab" data-tab="life" role="tab">✨ 라이프·AI<i>6</i></button>
+        <button class="tab" data-tab="soon" role="tab">🔜 출시 예정<i>2</i></button>
+        <span class="tab-ink" id="tabInk"></span>
+      </div>
+      <div class="tabwrap" id="tabwrap">
+        <div class="tabpanel active" id="tab-games" data-tab="games"><div class="apps">
+        <a class="app reveal" href="https://minion.toss.im/vJzyykin" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/moongchi.jpg" alt="뭉치뭉치 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/moongchi.png" alt="뭉치뭉치 아이콘" loading="lazy"><div><div class="genre">힐링 캐주얼 게임</div><div class="name">뭉치뭉치</div></div></div>
+          <p class="desc">동글동글 귀여운 친구들이 뭉칠수록 커지는 말랑말랑 힐링 캐주얼 게임.</p>
+          <div class="feats"><span>🐥 동글 친구들</span><span>🤍 뭉치는 손맛</span><span>☁️ 부담 없는 힐링</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/moongchi.png" alt="뭉치뭉치 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/5yKqzNuD" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/animalpedia.jpg" alt="귀여운동물사전 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/animalpedia.png" alt="귀여운동물사전 아이콘" loading="lazy"><div><div class="genre">수집·힐링 게임</div><div class="name">귀여운동물사전</div></div></div>
+          <p class="desc">깜찍한 동물들을 하나씩 모아 나만의 도감을 채워가는 힐링 컬렉션.</p>
+          <div class="feats"><span>🐾 동물 수집</span><span>📖 도감 채우기</span><span>🌙 힐링 무드</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/animalpedia.png" alt="귀여운동물사전 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/9pr1fMaw" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/dongtoesa.jpg" alt="동네퇴마사 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/dongtoesa.png" alt="동네퇴마사 아이콘" loading="lazy"><div><div class="genre">캐주얼 액션 RPG</div><div class="name">동네퇴마사</div></div></div>
+          <p class="desc">골목골목 출몰하는 악귀를 물리치는 통쾌한 한국형 퇴마 액션 RPG.</p>
+          <div class="feats"><span>👻 귀신 보스</span><span>📜 부적·도구 성장</span><span>⚔️ 한 손 전투</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/dongtoesa.png" alt="동네퇴마사 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/rjut6Vsr" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/bunsik-madness.jpg" alt="분식대란 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/bunsik-madness.png" alt="분식대란 아이콘" loading="lazy"><div><div class="genre">분식 퍼즐 게임</div><div class="name">분식대란</div></div></div>
+          <p class="desc">밀려드는 주문을 퍼즐로 척척! 손맛 터지는 분식집 운영 게임.</p>
+          <div class="feats"><span>🍢 분식 메뉴</span><span>🧩 퍼즐 매치</span><span>🔥 빨라지는 주문</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/bunsik-madness.png" alt="분식대란 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/tBZC0Zuf" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/coin-tower.jpg" alt="코인 타워 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/coin-tower.png" alt="코인 타워 아이콘" loading="lazy"><div><div class="genre">뱀서류 로그라이크</div><div class="name">코인 타워</div></div></div>
+          <p class="desc">한 손으로 즐기는 뱀서류 액션! 코인으로 캐릭터를 강화하며 더 높이 올라가세요.</p>
+          <div class="feats"><span>⚔️ 뱀서류 액션</span><span>🪙 캐릭터 강화</span><span>🚀 더 높이</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스 미니앱</span><img class="qr" src="assets/qr/coin-tower.png" alt="코인 타워 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/nvcfeukj" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/gogo-drive.jpg" alt="고고 드라이브 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/gogo-drive.png" alt="고고 드라이브 아이콘" loading="lazy"><div><div class="genre">3D 캐주얼 레이싱</div><div class="name">고고 드라이브</div></div></div>
+          <p class="desc">달리고, 피하고, 추월하라! 생동감 넘치는 3D 도시를 질주하는 드라이빙 게임.</p>
+          <div class="feats"><span>🏎️ 3D 도시 질주</span><span>🚦 피하고 추월</span><span>🏆 기록 도전</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/gogo-drive.png" alt="고고 드라이브 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/zhHOCcSB" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/maze-escape.jpg" alt="어둠의 미로 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/maze-escape.png" alt="어둠의 미로 아이콘" loading="lazy"><div><div class="genre">1인칭 생존 호러</div><div class="name">어둠의 미로</div></div></div>
+          <p class="desc">칠흑 같은 미로 속, 손전등 하나와 발소리에 의지해 보이지 않는 추격자를 피해 탈출하라.</p>
+          <div class="feats"><span>🔦 손전등 생존</span><span>👂 발소리 추적</span><span>💎 보물 획득</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/maze-escape.png" alt="어둠의 미로 QR" loading="lazy"></div>
+        </div></a>
+      </div></div>
+        <div class="tabpanel" id="tab-life" data-tab="life"><div class="apps">
+        <a class="app reveal" href="https://fresh-keep.apps.tossmini.com" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/dasseotda.jpg" alt="다썼다 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/dasseotda.png" alt="다썼다 아이콘" loading="lazy"><div><div class="genre">생활·편의 · AI</div><div class="name">다썼다</div></div></div>
+          <p class="desc">집에 있는 물건의 사용기한을 사진 한 장으로 관리하는 살림 비서. AI가 품목·기한을 자동 인식해요.</p>
+          <div class="feats"><span>📷 사진으로 등록</span><span>⏰ 사용기한 알림</span><span>🔍 재고 검색</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>앱인토스</span><img class="qr" src="assets/qr/dasseotda.png" alt="다썼다 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://m.onestore.co.kr/v2/ko-kr/app/0001006574" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/trotstep.jpg" alt="트롯스텝 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/trotstep.png" alt="트롯스텝 아이콘" loading="lazy"><div><div class="genre">라이프스타일·팬덤</div><div class="name">트롯스텝</div></div></div>
+          <p class="desc">매일 걷는 걸음이 최애 가수를 향한 응원이 됩니다. 걸음으로 모은 투표권으로 응원하세요.</p>
+          <div class="feats"><span>👟 걸음→투표권</span><span>🎤 최애 응원</span><span>🏆 응원 랭킹</span></div><div class="app-foot"><span class="store one"><span class="s-dot"></span>원스토어로 받기</span><img class="qr" src="assets/qr/trotstep.png" alt="트롯스텝 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/zJkHpMOC" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/price-time-machine.jpg" alt="물가타임머신 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/price-time-machine.png" alt="물가타임머신 아이콘" loading="lazy"><div><div class="genre">생활정보 서비스</div><div class="name">물가타임머신</div></div></div>
+          <p class="desc">그때 그 가격, 지금은 얼마? 시점별 물가를 한눈에 비교하는 타임머신.</p>
+          <div class="feats"><span>💰 시점별 비교</span><span>📈 변화 그래프</span><span>⏱️ 체감 물가</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/price-time-machine.png" alt="물가타임머신 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/1PKZKt7u" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/hachanhan-image.jpg" alt="하찮은이미지 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/hachanhan-image.png" alt="하찮은이미지 아이콘" loading="lazy"><div><div class="genre">AI 이미지·재미</div><div class="name">하찮은이미지</div></div></div>
+          <p class="desc">못 그려도 괜찮아! 사진 한 장이면 피식 웃기는 낙서풍 그림으로 뚝딱.</p>
+          <div class="feats"><span>✏️ 낙서 변환</span><span>😆 B급 감성</span><span>📤 바로 공유</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/hachanhan-image.png" alt="하찮은이미지 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://minion.toss.im/hM4w0a2a" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/dream-gallery.jpg" alt="드림갤러리 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/dream-gallery.png" alt="드림갤러리 아이콘" loading="lazy"><div><div class="genre">AI 아트·갤러리</div><div class="name">드림갤러리</div></div></div>
+          <p class="desc">당신이 꾼 꿈을 AI가 한 장의 일러스트로. 꿈을 그림으로 모으는 갤러리.</p>
+          <div class="feats"><span>🌌 꿈→일러스트</span><span>🖼️ 드림 갤러리</span><span>✨ 감각적 결과물</span></div><div class="app-foot"><span class="store"><span class="s-dot"></span>토스로 플레이</span><img class="qr" src="assets/qr/dream-gallery.png" alt="드림갤러리 QR" loading="lazy"></div>
+        </div></a>
+        <a class="app reveal" href="https://onesto.re/0001005937" target="_blank" rel="noopener"><div class="shot"><img src="assets/shots/happy-pug.jpg" alt="해피퍼그 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/happy-pug.png" alt="해피퍼그 아이콘" loading="lazy"><div><div class="genre">반려 커뮤니티</div><div class="name">해피퍼그</div></div></div>
+          <p class="desc">동네 강아지 친구들과 함께 걷는 산책 모임, 반려인을 위한 커뮤니티.</p>
+          <div class="feats"><span>🐶 산책 모임</span><span>📍 친구 매칭</span><span>🏅 산책 인증</span></div><div class="app-foot"><span class="store one"><span class="s-dot"></span>원스토어로 받기</span><img class="qr" src="assets/qr/happy-pug.png" alt="해피퍼그 QR" loading="lazy"></div>
+        </div></a>
+      </div></div>
+        <div class="tabpanel" id="tab-soon" data-tab="soon"><div class="apps" style="grid-template-columns:repeat(2,1fr);max-width:720px;margin:0 auto">
+        <article class="app soon reveal"><div class="shot"><img src="assets/shots/evolve-2048.jpg" alt="진화 2048 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/evolve-2048.png" alt="진화 2048 아이콘" loading="lazy"><div><div class="genre">퍼즐 게임</div><div class="name">진화 2048</div></div></div>
+          <p class="desc">숫자를 합칠수록 귀여운 젤리 몬스터가 알에서 용왕까지 진화하는 2048 퍼즐!</p>
+          <div class="feats"><span>🥚 합칠수록 진화</span><span>🧩 클래식 2048</span><span>📴 오프라인 플레이</span></div><span class="soon-foot"><span class="s-dot"></span>앱인토스 출시 예정</span>
+        </div></article>
+        <article class="app soon reveal"><div class="shot"><img src="assets/shots/ghost-stack.jpg" alt="고스트 스택 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/ghost-stack.png" alt="고스트 스택 아이콘" loading="lazy"><div><div class="genre">캐주얼 게임</div><div class="name">고스트 스택</div></div></div>
+          <p class="desc">어제의 나(고스트)와 겨루는 네온 야경 블록 쌓기! 탭 한 번으로 즐기는 하이퍼 캐주얼.</p>
+          <div class="feats"><span>👆 원터치 쌓기</span><span>👻 고스트 대결</span><span>🌃 네온 야경</span></div><span class="soon-foot"><span class="s-dot"></span>앱인토스 출시 예정</span>
+        </div></article>
+      </div></div>
+      </div>
+      <div class="swipe-hint">← 좌우로 스와이프하거나 탭을 눌러 이동 →</div>
+    </div>
+  </section>
+<!-- ===== 상세 모달 ===== -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-bg" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="m-name">
+      <button class="modal-x" data-close aria-label="닫기">&times;</button>
+      <div class="modal-shot"><img id="m-shot" src="" alt=""></div>
+      <div class="modal-body">
+        <div class="modal-head">
+          <img class="modal-icon" id="m-icon" src="" alt="">
+          <div><div class="modal-genre" id="m-genre"></div><div class="modal-name" id="m-name"></div></div>
+        </div>
+        <p class="modal-desc" id="m-desc"></p>
+        <ul class="modal-feats" id="m-feats"></ul>
+        <div class="modal-foot">
+          <a class="modal-cta" id="m-cta" target="_blank" rel="noopener"></a>
+          <img class="modal-qr" id="m-qr" src="" alt="QR">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 의견 창구 ===== -->
+  <section class="feedback" id="feedback">
+    <div class="wrap">
+      <h2>💬 의견을 들려주세요</h2>
+      <p>앱을 써보고 느낀 점, 개선 아이디어, 새로 만들면 좋을 앱 제안까지 무엇이든 환영해요.</p>
+      <!-- 구글 폼 URL을 받으면 href를 폼 주소로 바꾸고 target="_blank" rel="noopener" 추가 -->
+      <a class="fb-btn" href="mailto:media-dev@nasmedia.co.kr?subject=%5Bsuperwork%20apps%5D%20%EC%9D%98%EA%B2%AC%20%EB%B3%B4%EB%82%B4%EA%B8%B0&body=%EC%96%B4%EB%96%A4%20%EC%95%B1%3A%20%0A%EC%9D%98%EA%B2%AC%3A%20%0A">✉️ 의견 보내기</a>
+      <div class="fb-sub">버튼을 누르면 메일 앱이 열려요. 내용을 적어 보내주세요.</div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="foot">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span>superwork apps</div>
+      <div class="team">SUPERWORK · KT나스미디어 매체개발TF</div>
+      <div class="copy">Idea is All you need</div>
+    </div>
+  </footer>
+
+  <script>
+    const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    // 헤더 스크롤 보더
+    const head=document.getElementById('pagehead');
+    const onS=()=>head.classList.toggle('scrolled',scrollY>6);
+    onS();addEventListener('scroll',onS,{passive:true});
+
+    // 카드 등장 스태거(같은 그리드 내 순번에 딜레이)
+    document.querySelectorAll('.apps').forEach(grid=>{
+      [...grid.children].forEach((c,i)=>c.style.transitionDelay=(i*60)+'ms');
+    });
+
+    // 스크롤 리빌
+    const io=new IntersectionObserver((es)=>{
+      es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // 카드 마우스 반응(3D 기울기 + 커서 글로우) — 정밀 포인터 + 모션 허용 시
+    const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+    if(fine && !reduce){
+      const MAX=9;
+      document.querySelectorAll('.app').forEach(card=>{
+        let raf=null,ev=null;
+        const apply=()=>{
+          raf=null;const r=card.getBoundingClientRect();
+          const px=(ev.clientX-r.left)/r.width, py=(ev.clientY-r.top)/r.height;
+          card.style.setProperty('--mx',(px*100)+'%');
+          card.style.setProperty('--my',(py*100)+'%');
+          const rx=(0.5-py)*MAX*2, ry=(px-0.5)*MAX*2;
+          card.style.transform=`perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-6px)`;
+        };
+        card.addEventListener('pointermove',e=>{ev=e;card.style.transition='transform .06s linear, box-shadow .2s';if(!raf)raf=requestAnimationFrame(apply);},{passive:true});
+        card.addEventListener('pointerleave',()=>{if(raf)cancelAnimationFrame(raf),raf=null;card.style.transition='transform .4s ease, box-shadow .2s';card.style.transform='';});
+      });
+    }
+
+    // ===== 탭 전환 + 스와이프 =====
+    const ORDER=['games','life','soon'];
+    const tabs=[...document.querySelectorAll('.tab')];
+    const panels={games:document.getElementById('tab-games'),life:document.getElementById('tab-life'),soon:document.getElementById('tab-soon')};
+    const ink=document.getElementById('tabInk');
+    let cur='games';
+    function moveInk(){const t=tabs.find(b=>b.dataset.tab===cur);if(!t||!ink)return;ink.style.width=t.offsetWidth+'px';ink.style.transform='translateX('+t.offsetLeft+'px)';}
+    function setTab(id,dir){
+      if(!panels[id]||id===cur)return;
+      const np=panels[id];
+      panels[cur].classList.remove('active','from-left','from-right');
+      np.classList.remove('from-left','from-right');void np.offsetWidth;
+      np.classList.add('active',dir>0?'from-right':'from-left');
+      tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+      cur=id;moveInk();
+    }
+    document.querySelectorAll('[data-tab]').forEach(el=>{
+      if(el.classList.contains('tabpanel'))return;
+      el.addEventListener('click',()=>{const id=el.dataset.tab;setTab(id,ORDER.indexOf(id)-ORDER.indexOf(cur));});
+    });
+    moveInk();addEventListener('resize',moveInk);addEventListener('load',moveInk);setTimeout(moveInk,300);
+    // 좌우 스와이프
+    const tw=document.getElementById('tabwrap');
+    let sx=0,sy=0,sw=false;
+    tw.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;sw=true;},{passive:true});
+    tw.addEventListener('touchend',e=>{
+      if(!sw)return;sw=false;
+      const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+      if(Math.abs(dx)<48||Math.abs(dx)<Math.abs(dy))return;
+      const i=ORDER.indexOf(cur);
+      if(dx<0&&i<ORDER.length-1)setTab(ORDER[i+1],1);
+      else if(dx>0&&i>0)setTab(ORDER[i-1],-1);
+    },{passive:true});
+
+    // ===== 상세 모달 =====
+    const T='https://minion.toss.im/';
+    const APPS={
+      moongchi:{name:'뭉치뭉치',genre:'힐링 캐주얼 게임',cta:'토스로 플레이',url:T+'vJzyykin',desc:'동글동글 귀여운 친구들이 뭉칠수록 커지는 말랑말랑 힐링 캐주얼 게임. 잠깐의 힐링이 필요할 때 가볍게 즐겨보세요.',feats:[['깜찍한 동글 친구들','병아리·고양이·강아지가 한가득'],['뭉치는 손맛','같은 친구를 모아 더 크게!'],['부담 없는 힐링','언제든 가볍게 즐기는 한 판']]},
+      animalpedia:{name:'귀여운동물사전',genre:'수집·힐링 게임',cta:'토스로 플레이',url:T+'5yKqzNuD',desc:'깜찍한 동물들을 하나씩 모아 나만의 도감을 채워가는 힐링 컬렉션. 아기자기한 걸 좋아한다면 추천해요.',feats:[['다양한 동물 수집','토끼·강아지·여우… 깜찍한 친구들을 모아요'],['도감 채우기','빈칸을 채울수록 차오르는 컬렉션의 뿌듯함'],['잔잔한 힐링 무드','보기만 해도 편안한 아기자기 일러스트']]},
+      dongtoesa:{name:'동네퇴마사',genre:'캐주얼 액션 RPG',cta:'토스로 플레이',url:T+'9pr1fMaw',desc:'골목골목 출몰하는 악귀를 물리치는 통쾌한 한국형 퇴마 액션 RPG.',feats:[['다채로운 귀신 보스','동네 곳곳의 악귀를 소탕해요'],['부적·도구 성장','퇴마 장비를 모아 점점 강해져요'],['손쉬운 한 손 전투','가볍게 즐기는 액션의 쾌감']]},
+      'bunsik-madness':{name:'분식대란',genre:'분식 퍼즐 게임',cta:'토스로 플레이',url:T+'rjut6Vsr',desc:'밀려드는 주문을 퍼즐로 척척! 손맛 터지는 분식집 운영 게임.',feats:[['인기 분식 메뉴','떡볶이·튀김·김밥을 직접 만들어요'],['시원한 퍼즐 매치','블록을 맞춰 주문을 빠르게 처리'],['갈수록 빨라지는 주문','콤보로 점수를 폭발시켜요']]},
+      'coin-tower':{name:'코인 타워',genre:'뱀서류 로그라이크',cta:'토스로 플레이',url:T+'tBZC0Zuf',desc:'한 손으로 가볍게 즐기는 뱀서류 액션! 적을 쓰러뜨려 모은 코인으로 캐릭터를 강화하고 더 높이 올라가세요.',feats:[['한 손 뱀서류 액션','몰려드는 적을 가볍게 쓸어담는 쾌감'],['코인으로 캐릭터 강화','얻은 코인으로 점점 강하게'],['더 높이, 더 멀리','다양한 맵과 적을 무찌르며 타워 정복']]},
+      'gogo-drive':{name:'고고 드라이브',genre:'3D 캐주얼 레이싱',cta:'토스로 플레이',url:T+'nvcfeukj',desc:'달리고, 피하고, 추월하라! 생동감 넘치는 3D 도시를 질주하는 캐주얼 드라이빙 게임.',feats:[['3D 도시 질주','화려한 도시를 가로지르는 시원한 손맛'],['피하고 추월하라','장애물과 차량을 피해 더 빠르게 돌파'],['레벨별 기록 도전','20개 레벨, 최고 주행 기록에 도전']]},
+      'maze-escape':{name:'어둠의 미로',genre:'1인칭 생존 호러',cta:'토스로 플레이',url:T+'zhHOCcSB',desc:'칠흑 같은 미로 속, 손전등 하나와 발소리에 의지해 보이지 않는 추격자를 피해 탈출하라.',feats:[['손전등 하나로 생존','빛이 닿는 곳만 보이는 칠흑의 미로'],['발소리에 집중하라','청각에 의지해 추격자를 피해 이동'],['보물을 노려라','위험을 무릅쓰고 보물을 챙겨 탈출']]},
+      dasseotda:{name:'다썼다',genre:'생활·편의 · AI',cta:'앱인토스에서 열기',url:'https://fresh-keep.apps.tossmini.com',desc:'집에 있는 물건의 사용기한을 사진 한 장으로 관리하는 살림 비서. 물건·영수증을 촬영하면 AI가 품목·사용기한을 자동 인식하고, 기한이 다가오면 알림으로 챙겨줘요.',feats:[['사진으로 자동 등록','촬영하면 AI가 품목·사용기한을 인식'],['사용기한 알림','임박하면 “빨리 쓰세요”, 지나면 “폐기하세요”'],['재고 검색','“치약 있나?” 검색으로 중복 구매 방지']]},
+      trotstep:{name:'트롯스텝',genre:'라이프스타일·팬덤',cta:'원스토어로 받기',url:'https://m.onestore.co.kr/v2/ko-kr/app/0001006574',desc:'매일 걷는 걸음이 최애 가수를 향한 응원이 됩니다. 걸음으로 모은 투표권으로 마음껏 응원하세요.',feats:[['걸음이 투표권으로','1,000보를 걸을 때마다 응원 투표권 1장'],['최애에게 응원 투표','모은 투표권으로 좋아하는 가수를 응원'],['실시간 응원 랭킹','응원 일지와 순위로 팬심을 한눈에']]},
+      'price-time-machine':{name:'물가타임머신',genre:'생활정보 서비스',cta:'토스로 플레이',url:T+'zJkHpMOC',desc:'그때 그 가격, 지금은 얼마? 시점별 물가를 한눈에 비교하는 타임머신.',feats:[['시점별 가격 비교','과거와 현재의 물가를 나란히'],['품목별 변화 그래프','짜장면·아이스크림까지 한눈에'],['체감 물가 확인','내 돈의 가치 변화를 직관적으로']]},
+      'hachanhan-image':{name:'하찮은이미지',genre:'AI 이미지·재미',cta:'토스로 플레이',url:T+'1PKZKt7u',desc:'못 그려도 괜찮아! 사진 한 장이면 피식 웃기는 낙서풍 그림으로 뚝딱.',feats:[['사진 → 낙서 변환','누구나 1초 만에 낙서 작가'],['B급 감성 가득','어설퍼서 더 웃긴 결과물'],['바로 공유','친구에게 보내고 같이 빵 터지기']]},
+      'dream-gallery':{name:'드림갤러리',genre:'AI 아트·갤러리',cta:'토스로 플레이',url:T+'hM4w0a2a',desc:'당신이 꾼 꿈을 AI가 한 장의 일러스트로. 꿈을 그림으로 모으는 갤러리.',feats:[['꿈을 일러스트로','글로 적은 꿈이 그림이 돼요'],['나만의 드림 갤러리','꿈 그림을 모아 감상해요'],['감각적인 결과물','몽환적인 분위기의 AI 아트']]},
+      'happy-pug':{name:'해피퍼그',genre:'반려 커뮤니티',cta:'원스토어로 받기',url:'https://onesto.re/0001005937',desc:'동네 강아지 친구들과 함께 걷는 산책 모임, 반려인을 위한 커뮤니티.',feats:[['산책 모임 만들기','우리 동네 산책 메이트를 찾아요'],['가까운 친구 매칭','동네 반려인과 가볍게 만나요'],['산책 기록·인증','함께한 산책을 기록하고 자랑해요']]},
+      'evolve-2048':{name:'진화 2048',genre:'퍼즐 게임',soon:true,desc:'숫자를 합칠수록 귀여운 젤리 몬스터가 알에서 용왕까지 진화하는 2048 퍼즐! 광고·인터넷 없는 깔끔한 오프라인 퍼즐이에요.',feats:[['합칠수록 진화','알→도마뱀→드래곤→마침내 용왕'],['클래식 2048 규칙','같은 타일을 밀어 합치는 익숙한 재미'],['오프라인 플레이','광고·인터넷 없이 깔끔하게']]},
+      'ghost-stack':{name:'고스트 스택',genre:'캐주얼 게임',soon:true,desc:'어제의 나(고스트)와 겨루는 네온 야경 블록 쌓기! 탭 한 번으로 즐기는 하이퍼 캐주얼.',feats:[['원터치 쌓기','정확히 맞추면 ‘퍼펙트’로 더 넓게'],['고스트 대결','내 최고 기록이 반투명 타워로 함께 쌓여요'],['네온 야경','깊은 남색 밤하늘 위로 올리는 탑']]}
+    };
+    const modal=document.getElementById('modal');
+    const $=id=>document.getElementById(id);
+    function openModal(slug){
+      const a=APPS[slug];if(!a)return;
+      $('m-shot').src='assets/shots/'+slug+'.jpg';$('m-shot').alt=a.name+' 스크린샷';
+      $('m-icon').src='assets/icons/'+slug+'.png';$('m-icon').alt=a.name;
+      $('m-genre').textContent=a.genre;$('m-name').textContent=a.name;$('m-desc').textContent=a.desc;
+      $('m-feats').innerHTML=a.feats.map(f=>'<li><b>'+f[0]+'</b>'+f[1]+'</li>').join('');
+      const cta=$('m-cta'),qr=$('m-qr');
+      if(a.soon){cta.className='modal-cta soon';cta.textContent='🔜 앱인토스 출시 예정';cta.removeAttribute('href');qr.classList.add('hide');}
+      else{cta.className='modal-cta';cta.textContent=a.cta+' →';cta.href=a.url;qr.classList.remove('hide');qr.src='assets/qr/'+slug+'.png';}
+      modal.classList.add('open');document.body.classList.add('noscroll');
+    }
+    function closeModal(){modal.classList.remove('open');document.body.classList.remove('noscroll');}
+    modal.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',closeModal));
+    addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+    document.querySelectorAll('.app').forEach(card=>{
+      const im=card.querySelector('.app-icon');if(!im)return;
+      const sm=im.getAttribute('src').match(/icons\/([\w-]+)\.png/);if(!sm)return;
+      card.style.cursor='pointer';
+      card.addEventListener('click',e=>{e.preventDefault();openModal(sm[1]);});
+    });
+  </script>
+</body>
+</html>
