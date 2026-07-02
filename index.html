@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>superwork apps · 출시 앱 모아보기</title>
-  <meta name="description" content="Superwork Workflow로 만든 앱들. 출시 13종 + 출시 예정 2종. QR을 스캔하거나 카드를 눌러 바로 플레이하세요." />
+  <meta name="description" content="Superwork Workflow로 만든 앱들. 출시 13종 + 출시 예정 3종. QR을 스캔하거나 카드를 눌러 바로 플레이하세요." />
   <meta name="theme-color" content="#fafaf7" />
 
   <!-- Open Graph / Twitter — 배포 도메인이 정해지면 og:url / og:image를 절대경로로 바꿔주세요 -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="superwork apps · 출시 앱 모아보기" />
-  <meta property="og:description" content="Superwork Workflow로 만든 앱들. 출시 13종 + 출시 예정 2종." />
+  <meta property="og:description" content="Superwork Workflow로 만든 앱들. 출시 13종 + 출시 예정 3종." />
   <meta property="og:locale" content="ko_KR" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -131,6 +131,9 @@
       border-top:1px solid var(--line);font-size:12px;font-weight:800;color:var(--muted);margin-top:auto;
     }
     .soon-foot .s-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+    #tab-soon .apps{grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto}
+    @media(max-width:720px){#tab-soon .apps{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:440px){#tab-soon .apps{grid-template-columns:1fr}}
 
     /* ---------- 탭 ---------- */
     .apps-section{padding:22px 0 52px}
@@ -229,7 +232,7 @@
   <section id="top" class="intro-band">
     <div class="wrap">
       <h1>superwork 앱 모아보기</h1>
-      <p>Superwork Workflow로 만든 <b>출시 앱 13종</b>과 <b>출시 예정 2종</b>.<br>카드를 누르거나 QR을 스캔하면 바로 실행됩니다.</p>
+      <p>Superwork Workflow로 만든 <b>출시 앱 13종</b>과 <b>출시 예정 3종</b>.<br>카드를 누르거나 QR을 스캔하면 바로 실행됩니다.</p>
     </div>
   </section>
 
@@ -239,7 +242,7 @@
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="games" role="tab">🎮 게임<i>7</i></button>
         <button class="tab" data-tab="life" role="tab">✨ 라이프·AI<i>6</i></button>
-        <button class="tab" data-tab="soon" role="tab">🔜 출시 예정<i>2</i></button>
+        <button class="tab" data-tab="soon" role="tab">🔜 출시 예정<i>3</i></button>
         <span class="tab-ink" id="tabInk"></span>
       </div>
       <div class="tabwrap" id="tabwrap">
@@ -312,7 +315,7 @@
           <div class="feats"><span>🐶 산책 모임</span><span>📍 친구 매칭</span><span>🏅 산책 인증</span></div><div class="app-foot"><span class="store one"><span class="s-dot"></span>원스토어로 받기</span><img class="qr" src="assets/qr/happy-pug.png" alt="해피퍼그 QR" loading="lazy"></div>
         </div></a>
       </div></div>
-        <div class="tabpanel" id="tab-soon" data-tab="soon"><div class="apps" style="grid-template-columns:repeat(2,1fr);max-width:720px;margin:0 auto">
+        <div class="tabpanel" id="tab-soon" data-tab="soon"><div class="apps">
         <article class="app soon reveal"><div class="shot"><img src="assets/shots/evolve-2048.jpg" alt="진화 2048 스크린샷" loading="lazy"></div><div class="app-body">
           <div class="app-top"><img class="app-icon" src="assets/icons/evolve-2048.png" alt="진화 2048 아이콘" loading="lazy"><div><div class="genre">퍼즐 게임</div><div class="name">진화 2048</div></div></div>
           <p class="desc">숫자를 합칠수록 귀여운 젤리 몬스터가 알에서 용왕까지 진화하는 2048 퍼즐!</p>
@@ -320,8 +323,13 @@
         </div></article>
         <article class="app soon reveal"><div class="shot"><img src="assets/shots/ghost-stack.jpg" alt="고스트 스택 스크린샷" loading="lazy"></div><div class="app-body">
           <div class="app-top"><img class="app-icon" src="assets/icons/ghost-stack.png" alt="고스트 스택 아이콘" loading="lazy"><div><div class="genre">캐주얼 게임</div><div class="name">고스트 스택</div></div></div>
-          <p class="desc">어제의 나(고스트)와 겨루는 네온 야경 블록 쌓기! 탭 한 번으로 즐기는 하이퍼 캐주얼.</p>
+          <p class="desc">숨은 고수(고스트)와 겨루는 네온 야경 블록 쌓기! 탭 한 번으로 즐기는 하이퍼 캐주얼.</p>
           <div class="feats"><span>👆 원터치 쌓기</span><span>👻 고스트 대결</span><span>🌃 네온 야경</span></div><span class="soon-foot"><span class="s-dot"></span>앱인토스 출시 예정</span>
+        </div></article>
+        <article class="app soon reveal"><div class="shot"><img src="assets/shots/pinch-runner.jpg" alt="핀치 러너 스크린샷" loading="lazy"></div><div class="app-body">
+          <div class="app-top"><img class="app-icon" src="assets/icons/pinch-runner.png" alt="핀치 러너 아이콘" loading="lazy"><div><div class="genre">캐주얼 러너 게임</div><div class="name">핀치 러너</div></div></div>
+          <p class="desc">오므리면 작아지고, 벌리면 커진다! 두 손가락 핀치 하나로 즐기는 한 끗 차이 엔드리스 러너.</p>
+          <div class="feats"><span>🤏 오므려 통과</span><span>💥 벌려서 분쇄</span><span>🏁 거리 기록 도전</span></div><span class="soon-foot"><span class="s-dot"></span>원스토어 출시 예정</span>
         </div></article>
       </div></div>
       </div>
@@ -458,7 +466,8 @@
       'dream-gallery':{name:'드림갤러리',genre:'AI 아트·갤러리',cta:'토스로 플레이',url:T+'hM4w0a2a',desc:'당신이 꾼 꿈을 AI가 한 장의 일러스트로. 꿈을 그림으로 모으는 갤러리.',feats:[['꿈을 일러스트로','글로 적은 꿈이 그림이 돼요'],['나만의 드림 갤러리','꿈 그림을 모아 감상해요'],['감각적인 결과물','몽환적인 분위기의 AI 아트']]},
       'happy-pug':{name:'해피퍼그',genre:'반려 커뮤니티',cta:'원스토어로 받기',url:'https://onesto.re/0001005937',desc:'동네 강아지 친구들과 함께 걷는 산책 모임, 반려인을 위한 커뮤니티.',feats:[['산책 모임 만들기','우리 동네 산책 메이트를 찾아요'],['가까운 친구 매칭','동네 반려인과 가볍게 만나요'],['산책 기록·인증','함께한 산책을 기록하고 자랑해요']]},
       'evolve-2048':{name:'진화 2048',genre:'퍼즐 게임',soon:true,desc:'숫자를 합칠수록 귀여운 젤리 몬스터가 알에서 용왕까지 진화하는 2048 퍼즐! 광고·인터넷 없는 깔끔한 오프라인 퍼즐이에요.',feats:[['합칠수록 진화','알→도마뱀→드래곤→마침내 용왕'],['클래식 2048 규칙','같은 타일을 밀어 합치는 익숙한 재미'],['오프라인 플레이','광고·인터넷 없이 깔끔하게']]},
-      'ghost-stack':{name:'고스트 스택',genre:'캐주얼 게임',soon:true,desc:'어제의 나(고스트)와 겨루는 네온 야경 블록 쌓기! 탭 한 번으로 즐기는 하이퍼 캐주얼.',feats:[['원터치 쌓기','정확히 맞추면 ‘퍼펙트’로 더 넓게'],['고스트 대결','내 최고 기록이 반투명 타워로 함께 쌓여요'],['네온 야경','깊은 남색 밤하늘 위로 올리는 탑']]}
+      'ghost-stack':{name:'고스트 스택',genre:'캐주얼 게임',soon:true,desc:'숨은 고수(고스트)와 겨루는 네온 야경 블록 쌓기! 탭 한 번으로 즐기는 하이퍼 캐주얼.',feats:[['원터치 쌓기','정확히 맞추면 ‘퍼펙트’로 더 넓게'],['고스트 대결','숨은 고수의 기록이 반투명 타워로 함께 쌓여요'],['네온 야경','깊은 남색 밤하늘 위로 올리는 탑']]},
+      'pinch-runner':{name:'핀치 러너',genre:'캐주얼 러너 게임',soon:true,store:'원스토어',desc:'한 끗 차이로 살아남는 두 손가락 핀치 러너. 오므리면 작아지고, 벌리면 커집니다. 낮은 터널은 작게 숙여 통과하고, 앞을 막는 적은 크게 키워 짓밟으세요. 달린 거리가 곧 당신의 점수!',feats:[['원 메커니즘, 무한 몰입','배울 건 5초, 마스터는 끝이 없어요'],['오므리고 벌리는 한 끗','터널은 작게 통과, 적은 크게 분쇄'],['따뜻한 미니멀 아트','눈이 편안한 웜톤 디자인과 손끝에 감기는 피드백']]}
     };
     const modal=document.getElementById('modal');
     const $=id=>document.getElementById(id);
@@ -469,7 +478,7 @@
       $('m-genre').textContent=a.genre;$('m-name').textContent=a.name;$('m-desc').textContent=a.desc;
       $('m-feats').innerHTML=a.feats.map(f=>'<li><b>'+f[0]+'</b>'+f[1]+'</li>').join('');
       const cta=$('m-cta'),qr=$('m-qr');
-      if(a.soon){cta.className='modal-cta soon';cta.textContent='🔜 앱인토스 출시 예정';cta.removeAttribute('href');qr.classList.add('hide');}
+      if(a.soon){cta.className='modal-cta soon';cta.textContent='🔜 '+(a.store||'앱인토스')+' 출시 예정';cta.removeAttribute('href');qr.classList.add('hide');}
       else{cta.className='modal-cta';cta.textContent=a.cta+' →';cta.href=a.url;qr.classList.remove('hide');qr.src='assets/qr/'+slug+'.png';}
       modal.classList.add('open');document.body.classList.add('noscroll');
     }
